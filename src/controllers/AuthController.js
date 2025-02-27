@@ -9,7 +9,7 @@ const registerController = async (req, res) => {
         let data = { name, email, password };
         let register = await authService.registerUser(data);
         if (!register.success) throw new Error("Registration failed");
-        res.json({
+        res.status(200).json({
             success: true,
             data: {
                 name: register.data.name,
@@ -40,4 +40,16 @@ const loginController = async (req, res) => {
     }
 }
 
-module.exports = { registerController, loginController };
+const getmyInfoController = async (req, res) => {
+    try {
+        res.status(200).json({
+            success: true,
+            data: req.user
+        })
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+        console.log(error);
+    }
+}
+
+module.exports = { registerController, loginController, getmyInfoController };
