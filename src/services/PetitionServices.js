@@ -3,11 +3,12 @@ const petition = require('../models/petition');
 class PetitionService {
 
     async createPetition(petitionData) {
-        const { title, category, creator } = petitionData;
+        const { title, category, creator, description } = petitionData;
         const newPetition = new petition({
             title,
             category,
-            creator
+            creator,
+            description
         });
         await newPetition.save();
         if (!newPetition) throw new Error("Petition creation failed");

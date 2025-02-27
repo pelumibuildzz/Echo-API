@@ -10,6 +10,11 @@ const PetitionSchema = new mongoose.Schema({
         enum: ["academic", "college", "hall", "chapel", "general"], 
         required: true 
     },
+    description: {
+        type: String,
+        trim: true,
+        required: true
+    },
     status: { 
         type: String, 
         enum: ["submitted", "top_3", "under_review", "approved", "rejected"], 

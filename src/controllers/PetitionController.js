@@ -3,9 +3,9 @@ const petitionService = new PetitionService();
 
 const createPetitionController = async (req, res) => {
     try {
-        let { title, category } = req.body
+        let { title, category, description } = req.body
         let createdBy = req.user.id;
-        if (!title || !category ) throw new Error("All fields are required");
+        if (!title || !category || !description ) throw new Error("All fields are required");
         let data = { title, category, createdBy };
         let createPetition = await petitionService.createPetition(data);
         if (!createPetition.success) throw new Error("Petition creation failed");

@@ -85,6 +85,7 @@ class MergedPetitionService {
             title: "",
             category: "",
             status: "",
+            description: "",
             createdBy: [],
             votes: 0
         };
@@ -95,6 +96,7 @@ class MergedPetitionService {
                 mergedPetitionData.title = petitionData.title
                 mergedPetitionData.category = petitionData.category
                 mergedPetitionData.status = petition.status
+                mergedPetitionData.description = petitionData.description
             };
             mergedPetitionData.createdBy = mergedPetition.push(petitionData.createdBy);
             mergedPetitionData.votes = mergedPetition + petitionData.votes;
