@@ -9,5 +9,7 @@ app.get("/api", (req, res) => {
 
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/petition", require("./routes/petition"));
+app.use("/api/votes", require("./routes/vote"));
+app.use("/api/council", require("./routes/council"))
 
 module.exports = app;

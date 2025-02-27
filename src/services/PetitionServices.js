@@ -36,10 +36,8 @@ class PetitionService {
     }
 
     async updatePetition(id, petitionData) {
-        const { title, category, status } = petitionData;
+        const { status } = petitionData;
         const updatedPetition = await petition.findByIdAndUpdate(id, {
-            title,
-            category,
             status
         }, { new: true });
         if (!updatedPetition) throw new Error("Petition update failed");

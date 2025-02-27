@@ -8,7 +8,6 @@ router.use(express.json());
 
 router.get("/", getPetitionsController)
 router.get("/:id", getPetitionsController)
-router.post("/", authenticateUserwebtoken,  getPetitionsController)
 router.put("/:id", authenticateUserwebtoken, isCouncil, getPetitionsController)
 router.delete("/:id", authenticateUserwebtoken, isAllowed, getPetitionsController)
 

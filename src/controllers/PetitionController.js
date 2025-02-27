@@ -42,21 +42,6 @@ const getPetitionsController = async (req, res) => {
     }
 }
 
-const updatePetitionController = async (req, res) => {
-    try {
-        let { status } = req.body
-        let petitionData = { status };
-        let petition = await petitionService.updatePetition(req.params.id, petitionData);
-        if (!petition.success) throw new Error("Petition update failed");
-        res.status(200).json({
-            success: true,
-            data: petition.data
-        });
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-        console.log(error);
-    }
-}
 
 const deletePetitionController = async (req, res) => {
     try {
@@ -72,4 +57,4 @@ const deletePetitionController = async (req, res) => {
     }
 }
 
-module.exports = { createPetitionController, getPetitionsController, updatePetitionController, deletePetitionController };
+module.exports = { createPetitionController, getPetitionsController, deletePetitionController };
