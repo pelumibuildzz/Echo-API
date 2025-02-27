@@ -1,16 +1,14 @@
 const express = require('express');
-const { registerController, loginController, getmyInfoController } = require('../controllers/AuthController');
-const { authenticateUserwebtoken } = require('../middlewares/authenticate');
+const { registerController, loginController } = require('../controllers/AuthController');
 const router = express.Router();
 
 router.use(express.json());
 
 router.get("/", (req, res) => {
-    res.json({msg: "Welcome To Echo API Authe!"});
+    res.json({msg: "Welcome To Echo API Auth System!"});
 });
 
 router.post("/register", registerController)
 router.post("/login", loginController)
-router.get("/me", authenticateUserwebtoken, getmyInfoController)
 
 module.exports = router;

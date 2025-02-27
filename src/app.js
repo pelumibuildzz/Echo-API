@@ -8,5 +8,6 @@ app.get("/api", (req, res) => {
 });
 
 app.use("/api/auth", require("./routes/auth"));
+app.use("/api/petition", require("./routes/petition"));
 
 module.exports = app;

@@ -40,16 +40,5 @@ const loginController = async (req, res) => {
     }
 }
 
-const getmyInfoController = async (req, res) => {
-    try {
-        res.status(200).json({
-            success: true,
-            data: req.user
-        })
-    } catch (error) {
-        res.status(400).json({ error: error.message });
-        console.log(error);
-    }
-}
 
-module.exports = { registerController, loginController, getmyInfoController };
+module.exports = { registerController, loginController };
