@@ -5,6 +5,7 @@ const { isAllowed } = require('../middlewares/petitionpermission');
 const router = express.Router();
 
 router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
 
 router.get("/", getPetitionsController)
 router.get("/:id", getPetitionsController)

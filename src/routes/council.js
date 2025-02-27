@@ -4,6 +4,7 @@ const { getAllPetitionsController, createMergedPetitionController, updatePetitio
 const router =  express.Router();
 
 router.use(express.json())
+router.use(express.urlencoded({ extended: true }));
 
 router.get("/petitions", authenticateUserwebtoken, isCouncil, getAllPetitionsController)
 router.post("/merge", authenticateUserwebtoken, isCouncil, createMergedPetitionController)

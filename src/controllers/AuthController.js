@@ -5,9 +5,10 @@ const registerController = async (req, res) => {
     try {
         let { name, email, password } = req.body
         if (!name || !email || !password) throw new Error("All fields are required");
-        if (!authService.isValidStudentEmail(email)) throw new Error("Invalid email address");
+        if (!authService.isEmail(email)) throw new Error("Invalid email address");
         let data = { name, email, password };
         let register = await authService.registerUser(data);
+        console.log(register);
         if (!register.success) throw new Error("Registration failed");
         res.status(200).json({
             success: true,
@@ -26,7 +27,7 @@ const loginController = async (req, res) => {
     try {
         let { email, password } = req.body
         if( !email || !password ) throw new Error("Email and Password are required");
-        if (!authService.isValidStudentEmail(email)) throw new Error("Invalid email address");
+        if (!authService.isEmail(email)) throw new Error("Invalid email address");
         let data = { email, password };
         let login = await authService.loginUser(data);
         if (!login.success) throw new Error("Login failed");

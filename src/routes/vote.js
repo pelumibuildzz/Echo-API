@@ -5,6 +5,7 @@ const { createVoteController } = require('../controllers/VoteController');
 const router = express.Router();
 
 router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
 
 router.post("/:petitionId", authenticateUserwebtoken, canUpdate, createVoteController);
 router.delete("/:petitionId", authenticateUserwebtoken, canUpdate, createVoteController);

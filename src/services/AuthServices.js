@@ -42,9 +42,9 @@ class AuthenticationService {
         }
     }
 
-    isValidStudentEmail(email) {
-        const studentEmailRegex = /^[A-Za-z]+\.[0-9]{7}@stu\.cu\.edu\.ng$/;
-        return studentEmailRegex.test(email);
+    isEmail(email) {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        return emailRegex.test(email.trim());
     }
 
     generateToken(user) {

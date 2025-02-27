@@ -3,6 +3,7 @@ const { registerController, loginController } = require('../controllers/AuthCont
 const router = express.Router();
 
 router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
 
 router.get("/", (req, res) => {
     res.json({msg: "Welcome To Echo API Auth System!"});
