@@ -1,6 +1,7 @@
 const express = require('express');
 const { getPetitionsController } = require('../controllers/PetitionController');
 const { authenticateUserwebtoken, isCouncil } = require('../middlewares/authenticate');
+const { isAllowed } = require('../middlewares/petitionpermission');
 const router = express.Router();
 
 router.use(express.json());

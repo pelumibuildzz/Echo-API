@@ -7,3 +7,5 @@ const isAllowed = async (req, res, next) => {
     if (petition.data.createdBy == userid) return next()
     res.sendStatus(403)
 }
+
+module.exports = { isAllowed }
