@@ -10,7 +10,7 @@ const createMergedPetitionController = async (req, res) => {
         let createdBy = req.user.id;
         if (!petitions || !createdBy ) throw new Error("All fields are required");
         let data = { petitions, createdBy };
-        let mergedPetition = mergedPetitionService.createMergedPetition(data)
+        let mergedPetition = await mergedPetitionService.createMergedPetition(data)
         if (!mergedPetition) throw new Error("Error Merging Petitions")
         res.status(200).json({
             success: true,

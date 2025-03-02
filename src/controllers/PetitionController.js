@@ -45,7 +45,8 @@ const getPetitionsController = async (req, res) => {
 
 const deletePetitionController = async (req, res) => {
     try {
-        let petition = await petitionService.deletePetition(req.params.id);
+        let id = req.params.id
+        let petition = await petitionService.deletePetition(id);
         if (!petition.success) throw new Error("Petition deletion failed");
         res.status(200).json({
             success: true,

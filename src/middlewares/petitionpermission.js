@@ -1,3 +1,6 @@
+const PetitionService =  require("../services/PetitionServices")
+const petitionService = new PetitionService()
+
 const isAllowed = async (req, res, next) => {
     let userid = req.user.id
     let role = req.user.role
