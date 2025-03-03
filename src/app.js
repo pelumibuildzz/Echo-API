@@ -14,6 +14,8 @@ app.use("/api/council", require("./routes/council"))
 app.use("/api/notifications", require("./routes/notification"));
 app.use("api/solutions", require("./routes/solution"))
 
+app.use(require("./telegram/webhook"));
+
 module.exports = app;
 
 //Status Code Verification and Correction Later

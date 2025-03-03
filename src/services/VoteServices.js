@@ -23,6 +23,19 @@ class VoteService {
         }
     }
 
+    async getVotesByPetitionId(id) {
+        try {
+            const voteList = await votes.find({ petition: id });
+            if (!voteList) throw new Error("Error finding votes");
+            return {
+                success: true,
+                data: voteList.length > 0 ? voteList : []
+            };
+        } catch (error) {
+            throw new Error(`Failed to retrieve votes: ${error.message}`);
+        }
+    }
+    
     async deleteVote(voteData) {
         const { user, petition } = voteData;
         let vote = await votes.findOneAndDelete({ user, petition });

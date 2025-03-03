@@ -27,6 +27,15 @@ class PetitionService {
         }
     }
 
+    async getPetitionByTelegramPollId(telegramPollId) {
+        const petition = await petition.findOne({telegramPollId: telegramPollId})
+        if (!petition) throw new Error("No petition found");
+        return {
+            success: true,
+            data: petition
+        }
+    }
+
     async getPetitionById(id) {
         const petitionData = await petition.findById(id);
         if (!petitionData) throw new Error("Petition not found");

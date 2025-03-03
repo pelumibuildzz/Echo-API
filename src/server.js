@@ -1,6 +1,7 @@
 const app = require('./app.js');
 const { config } = require('./config/config.js');
 const mongoose = require('mongoose');
+const bot = require("./telegram/bot.js");
 
 const PORT = config.PORT;
 const mongoUrl = config.MONGO_URL;
@@ -19,6 +20,9 @@ const connectWithRetry = () => {
         console.log('Connected to database');
         app.listen(PORT, () => {
             console.log(`Server is running on port ${PORT}`);
+            bot.setWebHook(`${process.env.APP_URL}/telegram-webhook`)
+                .then(() => console.log("Telegram webhook set successfully"))
+                .catch(console.error);
         });
     }).catch((err) => {
         retries += 1;
