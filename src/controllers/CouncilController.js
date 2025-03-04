@@ -52,7 +52,7 @@ const updatePetitionController = async (req, res) => {
         let petition = await petitionService.getPetitionById(id)
         let merged = await mergedPetitionService.getMergedPetitionById(id)
         if (merged.success) {
-            let data = { petitions, status}
+            let data = { petitionIds, status}
             let updatedMergedPetition = await mergedPetitionService.updateMerge( id, data )
             if (!updatedMergedPetition) throw new Error("Error Updating Merged Petition")
             res.status(200).json({

@@ -1,4 +1,7 @@
 const petition = require('../models/petition');
+const { createTelegramPoll } = require("../telegram/pollService");
+const NotificationService = require("./NotificationServices");
+const notificationService = new NotificationService();
 
 class PetitionService {
 
@@ -12,6 +15,7 @@ class PetitionService {
         });
         await newPetition.save();
         if (!newPetition) throw new Error("Petition creation failed");
+        await createTelegramPoll(newPetition)
         return {
             success: true,
             data: newPetition
@@ -51,6 +55,11 @@ class PetitionService {
             status
         }, { new: true });
         if (!updatedPetition) throw new Error("Petition update failed");
+        await notificationService.createNotification({
+            user: updatedPetition.creator,
+            petition: updatedPetition._id,
+            message: `Your Petition Titled: ${updatedPetition.title} has been Updated to ${status} Status!!!`
+        })
         return {
             success: true,
             data: updatedPetition
