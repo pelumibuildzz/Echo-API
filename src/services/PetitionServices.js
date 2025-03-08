@@ -22,8 +22,8 @@ class PetitionService {
         }
     }
 
-    async getPetitions({category, status}) {
-        const petitions = await petition.find({category, status});
+    async getPetitions({category, status, creator}) {
+        const petitions = await petition.find({category, status, creator});
         if (!petitions) throw new Error("No petitions found");
         return {
             success: true,

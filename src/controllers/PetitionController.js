@@ -21,9 +21,10 @@ const createPetitionController = async (req, res) => {
 
 const getPetitionsController = async (req, res) => {
     try {
-        if (req.params.id) {
-            let petition = await petitionService.getPetitionById(req.params.id);
-            if (!petition.success) throw new Error("Petition not found");
+        let id = req.params.id
+        if ( id ) {
+            let petition = await petitionService.getPetitionById(id);
+            if (!petition) throw new Error("Petition not found");
             return res.status(200).json({
                 success: true,
                 data: petition.data
@@ -42,6 +43,20 @@ const getPetitionsController = async (req, res) => {
     }
 }
 
+const getUserPetitionsController = async ( req, res ) => {
+    try {
+        let user = req.user
+        if (!user) throw new Error("Sign in User First")
+        let petitions = await petitionService.getPetitions({ creator: user.id})
+        res.status(200).json({
+            success: true,
+            data: petitions.data
+        })
+    } catch (error) {
+        res.status(400).json({ error: error.message });
+        console.log(error);
+    }    
+}
 
 const deletePetitionController = async (req, res) => {
     try {
@@ -58,4 +73,4 @@ const deletePetitionController = async (req, res) => {
     }
 }
 
-module.exports = { createPetitionController, getPetitionsController, deletePetitionController };
+module.exports = { createPetitionController, getPetitionsController, deletePetitionController, getUserPetitionsController };

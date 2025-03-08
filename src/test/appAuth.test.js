@@ -35,7 +35,7 @@ describe('Auth API Endpoints', () => {
         email: 'john.doe@example.com',
         password: 'password'
     };
-
+    let token;
     beforeAll(async () => {
         // Register a test user before login test
         await request(app).post('/api/auth/register').send(testUser);
@@ -50,6 +50,8 @@ describe('Auth API Endpoints', () => {
             });
 
         expect(res.statusCode).toBe(200);
+        token = res.data 
+        console.log(`token: ${token}`)
     });
 
     it('should not login with incorrect password', async () => {

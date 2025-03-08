@@ -36,4 +36,22 @@
 { "success": true, "message": "Petition deleted successfully" }
 ```
 
+### `GET /api/petitions/user`
+**Description:** Get petitions created by the authenticated user.  
+**Response:**
+```json
+{ "success": true, "data": userPetitions }
+```
+
+### `POST /api/petitions`
+**Description:** Create a new petition.  
+**Request Body:**
+```json
+{ "title": "string", "category": "string", "description": "string" }
+```
+**Response:**
+```json
+{ "success": true, "data": newPetition }
+```
+
 ---
